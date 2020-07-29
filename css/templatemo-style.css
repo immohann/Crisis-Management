@@ -292,6 +292,7 @@ display: none;
   .custom-navbar .nav .section-btn a:hover {
     color: #ffffff;
   }
+  
 
   .custom-navbar .nav li a {
     font-size: 12px;
@@ -300,11 +301,15 @@ display: none;
     padding-right: 22px;
     padding-left: 22px;
     text-transform: uppercase;
+    transition:0.4s;
   }
+
 
   .custom-navbar .nav li a:hover {
     background: transparent;
     color: #ce3232;
+   
+    
   }
 
   .custom-navbar .navbar-nav > li > a:hover,
@@ -470,8 +475,21 @@ display: none;
   }
 
 
+/* NEWS___________________________ */
+  .holder ul li{
+    margin: 60px;
+    border-top:solid 1px;
 
-  /*---------------------------------------
+}
+
+
+
+
+
+/* ___________________________ */
+
+
+/*---------------------------------------
       ABOUT              
   -----------------------------------------*/
 
@@ -613,6 +631,19 @@ display: none;
 
 
 
+
+  /* NEWS iMAGE--------------------------------- */
+ 
+ .newsi{
+   width: 120px;
+ }
+ 
+  /* NEWS iMAGE--------------------------------- */
+ 
+ 
+ 
+ 
+ 
   /*---------------------------------------
      MENU              
   -----------------------------------------*/
