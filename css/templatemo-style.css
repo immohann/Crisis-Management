@@ -49,9 +49,11 @@ display: none;
   padding-top: 80px;
   padding-bottom: 80px;
   width: 100%;
-  color: #2b2b2b;
+  color: #ff1515;
 }
-
+.big:hover{
+  color: #dddddd;
+}
 
   /*---------------------------------------
      TYPOGRAPHY              
@@ -488,6 +490,15 @@ display: none;
 }
 
 
+.m-img{
+  width: 10%;
+}
+.mm-img{
+width: 30px;
+margin: 1% 1.5%;
+}
+
+
 
 
 
@@ -764,12 +775,33 @@ display: none;
 }
 .aid-body{
   background-color:  rgb(37, 37, 37);
-  color: #bfbdbd;
-  padding-top: %;
-
+ 
+}
+.col-md-3{
+  margin-top: 15%;
 }
 
+
+.m-btn a:hover{
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 37, 37);
+}
 /* -------------FIRST AID MODAL--------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
