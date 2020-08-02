@@ -653,10 +653,37 @@ margin: 1% 1.5%;
  .newsi{
    width: 120px;
  }
+  /*--------------------------------- */
  
-  /* NEWS iMAGE--------------------------------- */
+
+
+
+  /* --Confirmation news------------------ */
+
+.recog{
+  text-align: center;
+}
+.field{
+  border-color:transparent;
+  border-bottom:solid red 2px;
+  color: #c9c9c9;
+}
+
+  /* --------------------------------- */
  
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
  
  
  

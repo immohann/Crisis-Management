@@ -327,8 +327,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVPctb07LMUbtImoe4EijQUk
                  <div class="recog">
                       Confirm Sending the message: <br> <br> 
 
-                    <input type="text" placeholder="Your Name"> <br> <br>
-                    <input type="text " placeholder="Disaster Type"> <br> <br>
+                    <input type="text" placeholder="Your Name" class="field"> <br> <br>
+                    <input type="text " placeholder="Disaster Type" class="field"> <br> <br>
 
                       <a href="#" class="btn btn-primary">SEND</a>
                       <a href="#" class="btn btn-primary">CANCEL</a>      
@@ -350,12 +350,14 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVPctb07LMUbtImoe4EijQUk
                  </button>
              </div>
              <div class="modal-body">   
-                 <div class="recog">
+                 <div class="conf">
                       Confirm Sending the message: <br> <br> 
 
-                    <input type="text" placeholder="Your Name"> <br> <br>
-                    <input type="text " placeholder="Injury type"> <br> <br>
 
+                     
+                    <input type="text" placeholder="Your Name" class="field"> <br> <br>
+                    <input type="text " placeholder="Injury type" class="field"> <br> <br>
+                   
                       <a href="#" class="btn btn-primary">SEND</a>
                       <a href="#" class="btn btn-primary">CANCEL</a>      
                  </div>     	                         
@@ -571,6 +573,15 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVPctb07LMUbtImoe4EijQUk
          </div>
 
 
+
+
+         <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+         <df-messenger
+           intent="WELCOME"
+           chat-title="Response"
+           agent-id="67b17896-7e42-4b0f-8662-182c7f8aa01f"
+           language-code="en"
+         ></df-messenger>
       <!-- News -->
   
       <section id="contact news" data-stellar-background-ratio="0.1" style="padding: 40px;">
