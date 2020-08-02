@@ -14,7 +14,7 @@ http://www.templatemo.com/tm-515-eatery
     overflow-x: hidden;
     height: 100%;
   }
-
+ 
   #map {
     height: 70%;
     margin: 2%;
@@ -666,7 +666,7 @@ margin: 1% 1.5%;
 .field{
   border-color:transparent;
   border-bottom:solid red 2px;
-  color: #c9c9c9;
+  color: black;
 }
 
   /* --------------------------------- */

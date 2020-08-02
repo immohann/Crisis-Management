@@ -12,9 +12,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-
-
-     
+      
      <link rel="stylesheet" href="css/bootstrap.min.css">
      <link rel="stylesheet" href="css/font-awesome.min.css">
      <link rel="stylesheet" href="css/animate.css">
@@ -25,11 +23,12 @@
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/templatemo-style.css">
      <!-- MAP LOAD SCRIPT -->
+
+     <!-- MAP LOAD SCRIPT -->
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVPctb07LMUbtImoe4EijQUkibkNzBsA&callback=initMap&libraries=places">
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4nyMP_pwA&callback=initMap&libraries=places">
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
      
 <!-- MAP MIAN SCRIPT -->
@@ -828,47 +827,10 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmVPctb07LMUbtImoe4EijQUk
               </div>
           </div>
 
-<!-- News JS -->
-     <script>
-          jQuery.fn.liScroll = function(settings) {
-	     settings = jQuery.extend({
-		travelocity: 0.03
-		}, settings);		
-		return this.each(function(){
-				var $strip = jQuery(this);
-				$strip.addClass("newsticker")
-				var stripHeight = 1;
-				$strip.find("li").each(function(i){
-					stripHeight += jQuery(this, i).outerHeight(true); // thanks to Michael Haszprunar and Fabien Volpi
-				});
-				var $mask = $strip.wrap("<div class='mask'></div>");
-				var $tickercontainer = $strip.parent().wrap("<div class='tickercontainer'></div>");								
-				var containerHeight = $strip.parent().parent().height();	//a.k.a. 'mask' width 	
-				$strip.height(stripHeight);			
-				var totalTravel = stripHeight;
-				var defTiming = totalTravel/settings.travelocity;	// thanks to Scott Waye		
-				function scrollnews(spazio, tempo){
-				$strip.animate({top: '-='+ spazio}, tempo, "linear", function(){$strip.css("top", containerHeight); scrollnews(totalTravel, defTiming);});
-				}
-				scrollnews(totalTravel, defTiming);				
-				$strip.hover(function(){
-				  jQuery(this).stop();
-				},
-				function(){
-				  var offset = jQuery(this).offset();
-				  var residualSpace = offset.top + stripHeight;
-				  var residualTime = residualSpace/settings.travelocity;
-				  scrollnews(residualSpace, residualTime);
-                                   });			
-                         });	
-               };
-               $(function(){
-               $("ul#ticker01").liScroll();
-               });
-</script>
 
 
 
+<!-- Maps -->
 <!-- Maps -->
 <div class="section-title wow fadeInUp" data-wow-delay="0.1s" style="text-align: center; padding-top: 4%;">
      <h2 id="mapp">Nearby Healthcare Centers</h2>
