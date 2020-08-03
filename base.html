@@ -1,6 +1,7 @@
+{%load static%}
  <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
 
      <title>Disaster Management: SEM_ALPHA</title>
 
@@ -12,24 +13,23 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-      
-     <link rel="stylesheet" href="css/bootstrap.min.css">
-     <link rel="stylesheet" href="css/font-awesome.min.css">
-     <link rel="stylesheet" href="css/animate.css">
-     <link rel="stylesheet" href="css/owl.carousel.css">
-     <link rel="stylesheet" href="css/owl.theme.default.min.css">
-     <link rel="stylesheet" href="css/magnific-popup.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+     
+     <link rel="stylesheet" href="{% static 'news/css/bootstrap.min.css'%}">
+     <link rel="stylesheet" href="{% static 'news/css/font-awesome.min.css'%}">
+     <link rel="stylesheet" href="{% static 'news/css/animate.css'%}">
+     <link rel="stylesheet" href="{% static 'news/css/owl.carousel.css'%}">
+     <link rel="stylesheet" href="{% static 'news/css/owl.theme.default.min.css'%}">
+     <link rel="stylesheet" href="{% static 'news/css/magnific-popup.css'%}">
 
      <!-- MAIN CSS -->
-     <link rel="stylesheet" href="css/templatemo-style.css">
-     <!-- MAP LOAD SCRIPT -->
-
-     <!-- MAP LOAD SCRIPT -->
+     <link rel="stylesheet" href="{% static 'news/css/template-style.css'%}">
+     
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4nyMP_pwA&callback=initMap&libraries=places">
 </script>
-
      
 <!-- MAP MIAN SCRIPT -->
 <script>
@@ -53,23 +53,10 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
                     function initMap() {
           
                
-               
-               // else {
-               //     alert("Re-load and Allow Location Access.");
-               // }
-          
-               // make the var dynamic n we are done
-                    
-                    //  alert(document.getElementById("lat").value);
+
                     var lat=Number(document.getElementById("lat").value);
                     var lon=Number(document.getElementById("lon").value);
-                    
-                    // var lon= 77.21;
-                    // var lat= 28.66;
-                    
-     
-     
-     
+      
      
                     var sydney = new google.maps.LatLng(lat, lon);
                     exports.infowindow = new google.maps.InfoWindow();
@@ -146,7 +133,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="index.html" class="navbar-brand">Disaster<span>.</span> Management</a>
+                    <a href="base.html" class="navbar-brand">Disaster<span>.</span> Management</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -162,14 +149,14 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
                     <ul class="nav navbar-nav navbar-right">
                          <li><a href="tel:108">Emergency DIAL:  <i class="fa fa-phone"></i>  108</a></li>
                         
-                          <a href="#" class="section-btn" data-toggle="modal" data-target="#exampleModal1">Login </a>
+                          <a href="/admin/" class="section-btn">Login </a>
                         
-                          <a href="#" class="section-btn" data-toggle="modal" data-target="#exampleModal"> Get Notified!</a>
+                          <a href="#" class="section-btn" data-toggle="modal" data-target="#exampleModal"> Register</a>
                     </ul>
                </div>
 
           </div>
-                     <!-- language ---------------------->
+           <!-- language ---------------------->
            <div id="google_translate_element"></div>
 
            <script type="text/javascript">
@@ -181,8 +168,6 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
        <!-- language --------------------->
-
-
      </section>
 
 
@@ -218,16 +203,16 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
       <div class="modal-body">        	
    <form >
   <div class="form-row">
-    <div class="col-md-4">
+    <div class="col-md-4 mb-3">
       <label for="validationServer01">Admin Name</label>
       <input type="text" class="form-control is-valid" id="validationServer01" placeholder="User Name"  required name="user_name">
     </div>
-    <div class="col-md-4 ">
+    <div class="col-md-3 mb-3">
       <label for="validationServer02">Password</label>
       <input type="password" class="form-control is-valid" id="validationServer02" placeholder="Password"  required name="password">
     </div>
-  </div><br>
-  <button class="section-btn" type="submit" name="submit" style="margin-top: 2px; margin-left: 50px;" >Login</button>
+  </div>
+  <button class="section-btn" type="submit" name="submit" style="margin-top: 20px; margin-left: 30px;" >Login</button>
 </form> 
       </div>
      
@@ -246,31 +231,33 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style="height: 200px">        	
- <form  style="padding-left: 2%;">
+      <div class="modal-body" style="height: 300px">        	
+ <form  style="padding-left: 2%;" method = "POST" action ='/'>
+  {% csrf_token %}       
   <div class="form-row">
     <div class="col-md-5 mb-3">
+    {% for i,j in context2.items %}
+    
       <label for="validationServer01">Name</label>
-      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Name"  required name="user_name">
-      
+     {{j.name}} 
     </div>
     <div class="form-row">
      <div class="col-md-6 mb-3">
        <label for="validationServer03">Contact:</label>
-       <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="Number" name="contact" required>
-       
+       {{j.contact}} 
      </div>
     <div class="col-md-5 mb-6" style="margin-top:2%;">
       <label for="validationServerUsername">Email</label>
       <div class="input-group">
-        <input type="email" class="form-control is-invalid" id="validationServerUsername" placeholder="email" aria-describedby="inputGroupPrepend3" required name="email" >
-        
+        {{j.email}}
       </div>
 
+  {% endfor %}
     </div>
   <button class="section-btn col-md-4 mb-3" type="submit" name="submit" style=" margin-left: 50px;" >Sign up</button>
 
   </div>
+
   
 
    
@@ -285,6 +272,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
     </div>
   </div>
 </div>
+     <!-- HOME -->
+     {% block content %}
      <!-- HOME -->
      <section id="home" class="slider" data-stellar-background-ratio="0.5">
           <div class="row">
@@ -302,12 +291,12 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
                                         <!--SOS button   -->
                                         <br>
                                         <div class="dropdown">
-                                             <button class="dropbtn section-btn btn btn-default smoothScroll " style=" margin-left: 0px; font-size: small;border: solid white 1px;" data-toggle="modal" data-target="#amb">SOS-Ambulance</button>
+                                             <button class="dropbtn section-btn btn btn-default smoothScroll " style=" margin-left: 0px; font-size: small;border: solid white 1px;" data-toggle="modal" data-target="#amb"   >SOS-Ambulance</button>
                                            </div>
 
                                            <div class="dropdown ">
                                              <button class="dropbtn section-btn btn btn-default smoothScroll " style=" margin-left: 0px; font-size: small;border: solid white 1px;" data-toggle="modal" data-target="#sos">SOS-First-Aid</button>
-                                             <div class="dropdown-content">
+                                             
                                            </div>
 
                                          <!-- SOS  ends here-->
@@ -319,7 +308,6 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
                                              <a href="#" target="_blank"  data-toggle="modal" data-target="#aid" class="section-btn btn btn-default smoothScroll">First - Aid Steps . </a><br>
                                              <a href="#mapp" class="header section-btn btn btn-default smoothScroll" >Healthcare Centers </a><br>
                                              <a href="#prec" class="header section-btn btn btn-default smoothScroll" >Precautionary Steps</a>
-                                       
                                         </div>
                                    </div>
                               </div>
@@ -329,7 +317,17 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
      </section>
 
 
-<!-- Ambulance Modal -->
+<!-- chatbot ----------------------------------------------------------->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1%22%3E"> </script>
+     <df-messenger
+       intent="WELCOME"
+       chat-title="Response"
+       agent-id="b9478ac3-83a8-4045-994e-cc519a59eae8"
+       language-code="en"
+     ></df-messenger>
+<!-- ------------------------------------------------------------------->
+     
+     <!-- Ambulance Modal -->
 <div class="modal fade" id="amb" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
      <div class="modal-dialog" role="document" style="margin-top: 20%; width: 20%;">
          <div class="modal-content" >
@@ -342,49 +340,94 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
              <div class="modal-body">   
                  <div class="recog">
                       Confirm Sending the message: <br> <br> 
-           <!-- add the class name ---------------------------- -->
-                    <input type="text" placeholder="Your Name" class="field"> <br> <br>
-                    <input type="text " placeholder="Disaster Type" class="field"> <br> <br>
-           <!-- add the class name ---------------------------- -->
+                      <form>
 
-                      <a href="#" class="btn btn-primary">SEND</a>
-                      <a href="#" class="btn btn-primary">CANCEL</a>      
-                 </div>     	                         
+                        <input id="name_user" type="text" placeholder="Your Name" name = "name" class="field" style="border-color:transparent;border-bottom:solid red 2px;color: black;"> <br> <br>
+                    <input id="distype" type="text " placeholder="Disaster Type" name = "distype" class="field" style="border-color:transparent;border-bottom:solid red 2px;color: black;"> <br> <br>
+
+                    <button href="#" onclick="getLocation()" class="btn btn-primary" >SOS</button>  
+                      <a href="#" class="btn btn-primary">CANCEL</a>
+
+                        </form>
+
+                          
+                 </div>                                
                  </div>  
              </div>
          </div>
      </div>
-     
-
-<!-- FIRST AID Modal -->
-<div class="modal fade" id="sos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-     <div class="modal-dialog" role="document" style="margin-top: 20%; width: 20%;">
-         <div class="modal-content" >
-             <div class="modal-header">
-                 <h3 class="modal-title" id="exampleModalLabel" style="color: black ; font-weight: 500;" >Confirmation Box </h3>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-                 </button>
-             </div>
-             <div class="modal-body">   
-                 <div class="conf">
-                      Confirm Sending the message: <br> <br> 
 
 
-           <!-- add the class name ---------------------------- -->                     
-                    <input type="text" placeholder="Your Name" class="field"> <br> <br>
-                    <input type="text " placeholder="Injury type" class="field"> <br> <br>
-           <!-- add the class name ---------------------------- -->
+<script>
 
-                      <a href="#" class="btn btn-primary">SEND</a>
-                      <a href="#" class="btn btn-primary">CANCEL</a>      
-                 </div>     	                         
-                 </div>  
-             </div>
-         </div>
-     </div>
-     
- 
+                  function httpGet(theUrl)
+                  {
+                      var xmlHttp = new XMLHttpRequest();
+                      xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+                      xmlHttp.send( null );
+                      return xmlHttp.responseText;
+                  }
+
+                  // var x = document.getElementById("demo");
+
+                  function getLocation() {
+                    if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition(showPosition);
+                    } else { 
+                      // x.innerHTML = "Geolocation is not supported by this browser.";
+                    }
+                  }
+
+                  function showPosition(position) {
+                    // x.innerHTML = "Latitude: " + position.coords.latitude + 
+                    // "<br>Longitude: " + position.coords.longitude;
+                    
+                    url = "https://api.foursquare.com/v2/venues/search?&client_id=K2W5FGGUYG3PA1FEN0GB55M5EE4GGXIILMAHDTHJUOFGGUIA&client_secret=PRLRR44R3AOV3JKDH4VXM3JAKKYPRHKRWQSQNLJSRPPNG2K1&v=20200802&ll="+position.coords.latitude+","+position.coords.longitude+"&categoryId=4bf58dd8d48988d196941735&sortByDistance=1";
+
+                    
+                    var response = httpGet(url);
+                    
+                    // var y = document.getElementById("response");
+                    //y.innerHTML = response;
+                    
+                    var obj = JSON.parse(response);
+                    
+                    // var name = document.getElementById("hospitaldata1");
+                    // name.innerHTML = obj.response.venues[0].name;
+                    console.log(obj.response.venues[0].name);
+
+                    var hospital= obj.response.venues[0].name;
+            
+                    var contact = Math.floor(Math.random() * 1000000000);
+
+                    var name = document.getElementById("name_user").value;
+
+                    var message = "Alert has been been sent to " + hospital+ " for user " + name;
+                    
+
+                    alert(message) ;
+              
+
+                    
+                    var URL = "{% url 'rel-help' %}";
+
+                    var data = {'name': name,'hospital': hospital, 'contact': contact, 'lat':position.coords.latitude,'lon':position.coords.longitude,csrfmiddlewaretoken: '{{ csrf_token }}'};
+
+                    $.post(URL, data, function(response){
+                        if(response === 'success'){ alert('Alert sent'); }
+                        else{ alert('Error! :('); }
+                    });
+
+                  }
+
+                  </script>
+
+
+
+
+<!--  -->
+
+
 
 <!--MODAL FOR First Aid-->
 <div class="modal fade" id="aid" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -396,26 +439,26 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
             <span aria-hidden="true" style="color: rgb(255, 255, 255);">&times;</span>
           </button>
         </div>
-        <div class="modal-body aid-body">        	
-          <div class="col-md-3 m-btn">                              
+        <div class="modal-body aid-body">
+          <div class="col-md-3 m-btn">
                <a href="#" data-toggle="modal" data-target="#bone" class=" big  btn btn-default  bold ">Broken Bone</a>
           </div>
-          <div class="col-md-3 m-btn">  
+          <div class="col-md-3 m-btn">
                <a href="#" data-toggle="modal" data-target="#bleed" class="btn btn-default  bold big">Bleeding Wounds</a><br>
           </div>
-          
-               <div class="col-md-3 m-btn">  
+
+               <div class="col-md-3 m-btn">
                <a href="#"  data-toggle="modal" data-target="#int-bleed" class=" btn btn-default bold big ">Internal Bleeding</a><br>
           </div>
-         
-               <div class="col-md-3 m-btn">  
+
+               <div class="col-md-3 m-btn">
                <a href="#" data-toggle="modal" data-target="#burn"  class=" btn btn-default  bold big">Burn Treatment</a>
           </div>
-               
 
-          
+
+
         </div>
-       
+
       </div>
     </div>
   </div>
@@ -470,7 +513,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
                      The first aid principle to address a broken bone wound is through the fixation to rest/minimize activity of the two joints that flank the broken bone. This is necessary to prevent friction of the broken bone. Friction of a broken bone can aggravate the wound. 
                      </p>
                      </p>
-                 </div>     	                         
+                 </div>                                
                  </div>  
              </div>
          </div>
@@ -504,7 +547,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
           <br>           • placing a bandage on the wound 
               <br>       • exerting pressure and placing a bandage (tourniquet) on the wound • exerting pressure on internal blood center points, for instance by the neck side, underneath the upper arm 
                   <br>   • and even when there is no more bleeding, the wound should still be covered to prevent bacteria/germs from entering through the open skin.                
-                 </div>     	                         
+                 </div>                                
                  </div>  
              </div>
          </div>
@@ -541,7 +584,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
                          <br>    • placing a bandage on the wound 
                         <br>     • exerting pressure and placing a bandage (tourniquet) on the wound • exerting pressure on internal blood center points, for instance by the neck side, underneath the upper arm 
                         <br>     • and even when there is no more bleeding, the wound should still be covered to prevent bacteria/germs from entering through the open skin. 
-                         </div>     	                         
+                         </div>                                
                      </div>  
                  </div>
              </div>
@@ -584,7 +627,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
      <br> • After the wound is covered, try to get further treatment. 
      
      
-     </div>     	                         
+     </div>                                
                      </div>  
                  </div>
              </div>
@@ -592,41 +635,133 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC71ta8vee7b0DdK2daaBj23z4
 
 
 
+     
+<!-- FIRST AID Modal -->
+<div class="modal fade" id="sos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+     <div class="modal-dialog" role="document" style="margin-top: 20%; width: 20%;">
+         <div class="modal-content" >
+             <div class="modal-header">
+                 <h3 class="modal-title" id="exampleModalLabel" style="color: black ; font-weight: 500;" >Confirmation Box </h3>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">   
+                 <div class="recog">
 
-         <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-         <df-messenger
-           intent="WELCOME"
-           chat-title="Response"
-           agent-id="67b17896-7e42-4b0f-8662-182c7f8aa01f"
-           language-code="en"
-         ></df-messenger>
-      <!-- News -->
+
+                      Confirm Sending the message: <br> <br> 
+
+                    <form>
+
+                        <input id="name_user2" type="text" placeholder="Your Name" name = "name" style="border-color:transparent;border-bottom:solid red 2px;color: black;"> <br> <br>
+                    <input id="intype" type="text " placeholder="Injury Type" name = "distype" style="border-color:transparent;border-bottom:solid red 2px;color: black;"> <br> <br>
+
+                    <button href="#" class="btn btn-primary" onclick="getLocation2()">SOS</button>
+
+                      <button href="#" class="btn btn-primary">CANCEL</button>
+
+                        </form>
+
+                          
+                 </div>                                
+                 </div>  
+             </div>
+         </div>
+     </div>
+
+<script>
+
+                  // function httpGet(theUrl)
+                  // {
+                  //     var xmlHttp = new XMLHttpRequest();
+                  //     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+                  //     xmlHttp.send( null );
+                  //     return xmlHttp.responseText;
+                  // }
+
+                  // var x = document.getElementById("demo");
+
+                  function getLocation2() {
+                    if (navigator.geolocation) {
+                      // print('hi');
+                      navigator.geolocation.getCurrentPosition(showPosition2);
+                    } else { 
+                       x.innerHTML = "Geolocation is not supported by this browser.";
+                    }
+                  }
+
+
+
+                  function showPosition2(position) {
+                    // x.innerHTML = "Latitude: " + position.coords.latitude + 
+                    // "<br>Longitude: " + position.coords.longitude;
+                    
+                    url = "https://api.foursquare.com/v2/venues/search?&client_id=K2W5FGGUYG3PA1FEN0GB55M5EE4GGXIILMAHDTHJUOFGGUIA&client_secret=PRLRR44R3AOV3JKDH4VXM3JAKKYPRHKRWQSQNLJSRPPNG2K1&v=20200802&ll="+position.coords.latitude+","+position.coords.longitude+"&categoryId=50328a8e91d4c4b30a586d6c&sortByDistance=1";
+
+                    var response = httpGet(url);
+                    alert(response);
+                    
+                    // var y = document.getElementById("response");
+                    //y.innerHTML = response;
+                    
+                    var obj = JSON.parse(response);
+                    
+                    // var name = document.getElementById("hospitaldata1");
+                    // name.innerHTML = obj.response.venues[0].name;
+
+                    var ngo = obj.response.venues[0].name;
+    
+                    var contact = Math.floor(Math.random() * 1000000000);
+
+                    var name = document.getElementById("name_user2").value;
+
+                    var injury = document.getElementById("intype").value;
+
+                    var message = "Alert has been been sent to " + ngo+ " for user " + name;
+
+              
+                    
+                    var URL = "{% url 'rel-help2' %}";
+
+                    var data = {'name': name,'ngo': ngo, 'contact': contact, 'injury':injury,'lat':position.coords.latitude,'lon':position.coords.longitude,csrfmiddlewaretoken: '{{ csrf_token }}'};
+
+                    $.post(URL, data, function(response){
+                        if(response === 'success'){ alert('Alert sent'); }
+                        else{ alert('Error! :('); }
+                    });
+
+                  }
+
+                  </script>
+
+
 <!-- prediction -->
 <section id="contact news" data-stellar-background-ratio="0.1" style="padding: 40px;">
-     <div class="container wow fadeInUp"  data-wow-delay="0.1s"  style="padding: 0px;">
-          <div class=" col-md-12 holder" style="padding: 0px; margin: 0px">
-                <h2>Predictions for Bad Weather</h2>
-<ul id='alert'style="font-size: 10px; font-weight: 100; ">
+          <div class="container wow fadeInUp"  data-wow-delay="0.1s"  style="padding: 0px;">
+               <div class=" col-md-12 holder" style="padding: 0px; margin: 0px">
+                     <h2>Predictions for Bad Weather</h2>
+   <ul id='alert'style="font-size: 10px; font-weight: 100; ">
+  
+   </ul>
 
-</ul>
 
-
-<script type="text/javascript">
-function httpGet(theUrl)
+ <script type="text/javascript">
+    function httpGet(theUrl)
 {
-var xmlHttp = new XMLHttpRequest();
-xmlHttp.open( "GET", theUrl, false );
-xmlHttp.send( null );
-return xmlHttp.responseText;
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open( "GET", theUrl, false );
+  xmlHttp.send( null );
+  return xmlHttp.responseText;
 }
 
 var cities = ['Mumbai','Delhi','Kolkata','Chennai','Panaji'];
 
 for(x in cities){
 
-
-
-var url = "https://weather.ls.hereapi.com/weather/1.0/report.json?apiKey=7GtG2QtCJhaeAUUa4L7aESCeC821uRip4r2TSAW67_Q&&product=alerts&name=" + cities[x];
+  
+  
+  var url = "https://weather.ls.hereapi.com/weather/1.0/report.json?apiKey=7GtG2QtCJhaeAUUa4L7aESCeC821uRip4r2TSAW67_Q&&product=alerts&name=" + cities[x];
 
 var response = httpGet(url);
 var obj = JSON.parse(response);
@@ -642,7 +777,7 @@ var lat =  obj.alerts.latitude;
 var lon = obj.alerts.longitude;
 var timezone = obj.feedCreation;
 var description = obj.alerts.alerts[0].description;
-
+    
 console.log(country);
 console.log(state);
 console.log(city);
@@ -662,121 +797,69 @@ var newChild = '<li class="pred">\
 <p>'+timezone+'</p>\
 <p>' + description + '</p>\
 </li>';
-par.insertAdjacentHTML('beforeend',newChild);
-
+ par.insertAdjacentHTML('beforeend',newChild);
+  
 }
-</script>
+   </script>
+               </div>
+               
+
+     </section>          
+<div class="modal fade" id="news1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+          <div class="modal-dialog" role="document" style="margin-top: 13%;">
+              <div class="modal-content" >
+                  <div class="modal-header">
+                      <h3 class="modal-title" id="exampleModalLabel" style="color: black ; font-weight: 500">Description</h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div cCorona virus invadinlass="modal-body" style="padding: 3%;"> 
+                       <span> mad gay</span>
+                       <h5>big gay</h5>
+                       <p>gay</p>
+                       <a href="#" data-toggle="modal" data-target="#share"><img src="{% static 'news/images/share.jpg' %}" alt="loading.." class="m-img">     </a>   
+                       <a href="base.html#donate" class="btn btn-default">Donate</a>
+                       <a href="" target="_blank" class="btn btn-default">Precautions</a>
+                      </div>  
+                  </div>
+              </div>
           </div>
-          
 
-</section> 
+     <!-- Share News-Description Modal -->
+     <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+          <div class="modal-dialog" role="document" style="margin-top: 27%; width: 11%; ">
+              <div class="modal-content" >
+                  <div class="modal-body"> 
+                       <a href="#"><img src="{% static 'news/images/linkedin.jpeg' %}" alt="loading.." class="mm-img" style="width: 20px;">     </a>   
+                       <a href="#"><img src="{% static 'news/images/reddit.jpeg' %} " alt="loading.." class="mm-img" style="width: 20px;">     </a>   
+                       <a href="#"><img src="{% static 'news/images/fb.jpeg' %} " alt="loading.." class="mm-img" style="width: 20px;">     </a>   
+                       <a href="#"><img src="{% static 'news/images/twitter.png' %} " alt="loading.." class="mm-img" style="width: 20px;">     </a>   
+                      </div>  
+                  </div>
+              </div>
+          </div>
 
 
-
-
-
-
-
+      <!-- News -->
   
       <section id="contact news" data-stellar-background-ratio="0.1" style="padding: 40px;">
           <div class="container wow fadeInUp"  data-wow-delay="0.1s"  style="padding: 0px;">
                <div class=" col-md-6">
-<h2 id="news">Ministry News</h2>
-
-
-                    <div class="holder">
+                    <h2 id="news">Ministry News</h2>
+                          <div class="holder">
                          <ul id="ticker01">
-                              <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>31/07/2020</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/earthquakeee.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfires.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/flooood.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/pandemic.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/riots.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-
-                                                          
-
-                                                             <li> 
-                                                                 <div class="col-md-4">
-                                                                       <img src="images/wildfires.jpg" alt="loading..." class="newsi">  
-                                                                  </div>
-                                                                  <div class="col-md-8">
-                                                                       <span>10/10/2007</span><a href="#">  <br> Corona virus invading the land of dawn.</a>
-                                                                  </div> <br>
-                                                             </li>
+                                                            
+                                                            {% for q in query %}
+                                                            <li> 
+                                                                <div class="col-md-4">
+                                                                      <img src="{{q.imageurl}}" alt="loading..." class="newsi">  
+                                                                 </div>
+                                                                 <div class="col-md-8">
+                                                                      <span>{{q.date}}</span><a href="{{q.url}}">  <br> {{q.headline}}</a>
+                                                                 </div> <br>
+                                                            </li>
+                                                            {% endfor %}
                               </ul>
                        </div>
 
@@ -788,89 +871,35 @@ par.insertAdjacentHTML('beforeend',newChild);
                     
                                         <div class="holder">
                                              <ul id="ticker01">
+                                             {% for i,r in context1.items %}
+                                   
+                                             {% for  key,value in r.iterrows  %}
                                              
 
-
-                                                  <li> 
+                                                  <li style="height: 70px;"> 
                                                        <div class="col-md-4">
-                                                             <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
+                                                             <img src="{{value.image_url}}" alt="loading..." class="newsi">
                                                         </div>
-                                                        <div class="col-md-8">
-                                                             <span>31/07/2020</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                                        </div>  <br>
+                                                        <div class="col-md-8" style="font-size: small;">
+                                                             <span>{{value.date}}</span><a href="#" data-toggle="modal" data-target="#news1">  <br>{{value.headline}}</a> <br>
+                                                              <a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}">  <img src="{% static 'news/images/fb.jpeg' %}" alt="" class="mm-img" style="width: 20px;"> </a> 
+                                                              <a href="https://twitter.com/home?status={{value.share_string}}%20http://codingforentrepreneurs.com/"><img src="{% static 'news/images/twitter.png' %}" alt="" class="mm-img" style="width: 20px;"></a>
+                                                              <a href="https://www.linkedin.com/shareArticle?mini=true&url={{request.build_absolute_uri}}/&title={{value.headline}}&summary={{value.share_link}}"><img src="{% static 'news/images/linkedin.jpeg' %}" alt="" class="mm-img" style="width: 20px;"></a>
+                                                        </div> <br>
                                                    </li>
-                                                   <li> 
-                                                       <div class="col-md-4">
-                                                             <img src="images/earthquakeee.jpg" alt="loading..." class="newsi">  
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                                        </div>  <br>
-                                                   </li>
-                                                   <li> 
-                                                       <div class="col-md-4">
-                                                             <img src="images/wildfires.jpg" alt="loading..." class="newsi">  
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                                        </div>  <br>
-                                                   </li>
-                                                   <li> 
-                                                       <div class="col-md-4">
-                                                             <img src="images/flooood.jpg" alt="loading..." class="newsi">  
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                                        </div>  <br>
-                                                   </li>
-                                                   <li> 
-                                                       <div class="col-md-4">
-                                                             <img src="images/pandemic.jpg" alt="loading..." class="newsi">  
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                                        </div>  <br>
-                                                   </li>
-                                                   <li> 
-                                                       <div class="col-md-4">
-                                                             <img src="images/riots.jpg" alt="loading..." class="newsi">  
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                                        </div>  <br>
-                                                   </li>
-                                                   <li> 
-                                                       <div class="col-md-4">
-                                                             <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                                        </div>  <br>
-                                                   </li>
-
-                                                    <li> 
-                                                        <div class="col-md-4">
-                                                              <img src="images/wildfires.jpg" alt="loading..." class="newsi">  
-                                                         </div>
-                                                         <div class="col-md-8">
-                                                              <span>10/10/2007</span><a href="#">  <br> Corona virus invading the land of dawn.</a>
-                                                         </div> <br>
-                                                    </li>
-                                   </ul>
+                                                  {%endfor%}
+                                                  {%endfor%}     
+                                             
+                                                  
+                                                  </ul>
                                            </div>
                     
                                    </div>
 
 
-          </div>
-     </section>      
-     
-
-     
-<!-- Modal for MINISTRY_NEWS -->
-   
-     <!-- News Description Modal -->
-     <div class="modal fade" id="news1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                </div>
+     </section>          
+<div class="modal fade" id="news1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
           <div class="modal-dialog" role="document" style="margin-top: 13%;">
               <div class="modal-content" >
                   <div class="modal-header">
@@ -879,13 +908,13 @@ par.insertAdjacentHTML('beforeend',newChild);
                       <span aria-hidden="true">&times;</span>
                       </button>
                   </div>
-                  <div cCorona virus invadinlass="modal-body"> 
-                       <span> Date: 31/07/2020</span>
-                       <h5>Corona virus invading the land of dawn.</h5>
-                       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit labore incidunt consectetur, ea mollitia exercitationem repellat id cum itaque molestiae necessitatibus maxime maiores eos ut repudiandae in amet eaque blanditiis optio porro enim. Molestias laboriosam beatae quis dolorem iusto atque.</p>
-                       <a href="#" data-toggle="modal" data-target="#share"><img src="images/share.jpg" alt="loading.." class="m-img">     </a>   
-                       <a href="index.html#donate" class="btn btn-default">Donate</a>
-                       <a href="pandemic.html" target="_blank" class="btn btn-default">Precautions</a>
+                  <div cCorona virus invadinlass="modal-body" style="padding: 3%;"> 
+                       <span> mad gay</span>
+                       <h5>big gay</h5>
+                       <p>gay</p>
+                       <a href="#" data-toggle="modal" data-target="#share"><img src="{% static 'news/images/share.jpg' %}" alt="loading.." class="m-img">     </a>   
+                       <a href="base.html#donate" class="btn btn-default">Donate</a>
+                       <a href="" target="_blank" class="btn btn-default">Precautions</a>
                       </div>  
                   </div>
               </div>
@@ -896,19 +925,17 @@ par.insertAdjacentHTML('beforeend',newChild);
           <div class="modal-dialog" role="document" style="margin-top: 27%; width: 11%; ">
               <div class="modal-content" >
                   <div class="modal-body"> 
-                       <a href="#"><img src="images/linkedin.jpeg" alt="loading.." class="mm-img">     </a>   
-                       <a href="#"><img src="images/reddit.jpeg" alt="loading.." class="mm-img">     </a>   
-                       <a href="#"><img src="images/fb.jpeg" alt="loading.." class="mm-img">     </a>   
-                       <a href="#"><img src="images/twitter.png" alt="loading.." class="mm-img">     </a>   
+                       <a href="#"><img src="{% static 'news/images/linkedin.jpeg' %}" alt="loading.." class="mm-img" style="width: 20px;">     </a>   
+                       <a href="#"><img src="{% static 'news/images/reddit.jpeg' %} " alt="loading.." class="mm-img" style="width: 20px;">     </a>   
+                       <a href="#"><img src="{% static 'news/images/fb.jpeg' %} " alt="loading.." class="mm-img" style="width: 20px;">     </a>   
+                       <a href="#"><img src="{% static 'news/images/twitter.png' %} " alt="loading.." class="mm-img" style="width: 20px;">     </a>   
                       </div>  
                   </div>
               </div>
           </div>
 
+ 
 
-
-
-<!-- Maps -->
 <!-- Maps -->
 <div class="section-title wow fadeInUp" data-wow-delay="0.1s" style="text-align: center; padding-top: 4%;">
      <h2 id="mapp">Nearby Healthcare Centers</h2>
@@ -939,7 +966,7 @@ par.insertAdjacentHTML('beforeend',newChild);
 
                     <div class="col-md-6 col-sm-12">
                          <div class="wow fadeInUp about-image" data-wow-delay="0.6s">
-                              <img src="images/about-image.jpg" class="img-responsive" alt="">
+                              <img src="{%static 'news/images/about-image.jpg'%} " class="img-responsive" alt="">
                          </div>
                     </div>
                     
@@ -965,13 +992,13 @@ par.insertAdjacentHTML('beforeend',newChild);
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="wildfires.html" target="_blank" title="Wildfire">
-                                   <img src="images/wildfires.jpg"  class="img-responsive" alt="">
+                              <a href="{% url  'wildfire'%}" target="_blank" title="Wildfire">
+                                   <img src="{% static 'news/images/wildfires.jpg'%}"  class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                              <h3>Wildfire</h3>
-                                             <p > <a href="wildfires.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                             <p > <a href="{% url  'wildfire'%}" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
                                         </div>
                                         
@@ -983,13 +1010,13 @@ par.insertAdjacentHTML('beforeend',newChild);
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="floods.html"  target="_blank"  title="Flood">
-                                   <img src="images/flooood.jpg" class="img-responsive" alt="">
+                              <a href="{% url 'floods'%}"  target="_blank"  title="Flood">
+                                   <img src="{% static 'news/images/flooood.jpg' %}" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                               <h3>Flood</h3>
-                                              <p > <a href="floods.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                              <p > <a href="{% url 'floods'%}" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
                                              </div>
                                        
                                    </div>
@@ -1000,13 +1027,13 @@ par.insertAdjacentHTML('beforeend',newChild);
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="violence.html"  target="_blank"  title="Violence">
-                                   <img src="images/riots.jpg" class="img-responsive" alt="">
+                              <a href="{% url 'violence'%}"  target="_blank"  title="Violence">
+                                   <img src="{% static 'news/images/riots.jpg' %}" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                            <h3>Violence</h3>
-                                           <p > <a href="violence.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                           <p > <a href={% url 'violence'%} target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
 
                                         </div>
@@ -1019,13 +1046,13 @@ par.insertAdjacentHTML('beforeend',newChild);
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="earthquake.html"  target="_blank" title="Earthquake">
-                                   <img src="images/earthquakeee.jpg" class="img-responsive" alt="">
+                              <a href="{% url 'earthquake'%}"  target="_blank" title="Earthquake">
+                                   <img src="{%static 'news/images/earthquakeee.jpg' %}" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                              <h3>Earthquake</h3>
-                                             <p > <a href="earthquake.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                             <p > <a href={% url 'earthquake'%} target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
                                         </div>
                                        
@@ -1037,13 +1064,13 @@ par.insertAdjacentHTML('beforeend',newChild);
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="storms.html" target="_blank" title="Tornado">
-                                   <img src="images/tornado.jpg" class="img-responsive" alt="">
+                              <a href="{% url 'storms'%}" target="_blank" title="Tornado">
+                                   <img src="{% static 'news/images/tornado.jpg' %}" class="img-responsive" alt="">
 
                                   <div class="menu-info">
                                         <div class="menu-item">
                                             <h3>Tornado</h3>
-                                            <p > <a href="storms.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                            <p > <a href={% url 'storms'%} target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
                                         </div>
                                        
@@ -1055,13 +1082,13 @@ par.insertAdjacentHTML('beforeend',newChild);
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="pandemic.html" target="_blank"  title="Pandemic">
-                                   <img src="images/pandemic.jpg" class="img-responsive" alt="">
+                              <a href="{% url 'pandemic' %}" target="_blank"  title="Pandemic">
+                                   <img src="{% static 'news/images/pandemic.jpg' %}" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                            <h3>Pandemic</h3>
-                                           <p > <a href="pandemic.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                           <p > <a href={% url 'pandemic' %} target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
                                         </div>
                                        
@@ -1081,7 +1108,7 @@ par.insertAdjacentHTML('beforeend',newChild);
 
 
     
-
+{%endblock%}
      <!-- FOOTER -->
      <footer id="footer" data-stellar-background-ratio="0.5">
           <div class="container">
@@ -1149,27 +1176,18 @@ par.insertAdjacentHTML('beforeend',newChild);
      </footer>
 
 
-     
-       
-        
-
-
      <!-- SCRIPTS -->
-     <script src="js/jquery.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-     <script src="js/jquery.stellar.min.js"></script>
-     <script src="js/wow.min.js"></script>
-     <script src="js/owl.carousel.min.js"></script>
-     <script src="js/jquery.magnific-popup.min.js"></script>
-     <script src="js/smoothscroll.js"></script>
-     <script src="js/custom.js"></script>
+     <script src="{%static 'news/js/jquery.js'%}"></script>
+     <script src="{%static 'news/js/bootstrap.min.js'%}"></script>
+     <script src="{%static 'news/js/jquery.stellar.min.js'%}"></script>
+     <script src="{%static 'news/js/wow.min.js'%}"></script>
+     <script src="{%static 'news/js/owl.carousel.min.js'%}"></script>
+     <script src="{%static 'news/js/jquery.magnific-popup.min.js'%}"></script>
+     <script src="{%static 'news/js/smoothscroll.js'%}"></script>
+     <script src="{%static 'news/js/custom.js'%}"></script>
      
      
-     
-     
-<!--     notify script starts-->
 
-<!--     notify script ends-->
 
 </body>
 </html>
